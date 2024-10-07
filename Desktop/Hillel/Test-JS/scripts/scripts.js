@@ -72,14 +72,12 @@ const secondDigit = splitDigits[1];
 const thirdDigit = splitDigits[2];
 if (firstDigit === secondDigit && secondDigit === thirdDigit){
     console.log('All digits are the same.');
-}
-else{
+} else{
     console.log('Not all digits are the same.');
 }
 if (firstDigit === secondDigit || secondDigit === thirdDigit || firstDigit === thirdDigit){
     console.log('There are some same digits.');
-}
-else{
+} else{
     console.log('There are not any same digits.');
 }
 
@@ -104,28 +102,22 @@ const userAge = 2024 - yearBirth;
 let messageCity;
 if(cityResidence === 'Kyiv'){
     messageCity = 'You live in the capital of Ukraine';
-}
-else if(cityResidence === 'Washington'){
+} else if(cityResidence === 'Washington'){
     messageCity = 'You live in the capital of USA';
-}
-else if (cityResidence === 'London'){
+} else if (cityResidence === 'London'){
     messageCity = 'You live in the capital of UK';
-}
-else{
+} else{
     messageCity = `You live in ${cityResidence}`;
 }
 
 let messageSport;
 if(favoriteSport === 'Football'){
     messageSport = 'Cool! Do you want to become like Cristiano Ronaldo?';
-}
-else if (favoriteSport === 'Basketball'){
+} else if (favoriteSport === 'Basketball'){
     messageSport = 'Cool! Do you want to become like Michael Jordan?';
-}
-else if (favoriteSport === 'Hockey'){
+} else if (favoriteSport === 'Hockey'){
     messageSport = 'Cool! Do you want to become like Wayne Gretzky?';
-}
-else{
+} else{
     messageSport = `Your favorite sport is ${favoriteSport}`;
 }
 
