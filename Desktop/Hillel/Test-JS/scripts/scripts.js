@@ -50,9 +50,9 @@ console.log(typeof numbers);
 
 
 //2-Lesson3//
-const firstName = prompt(`Enter your first name`);
-const lastName = prompt(`Enter your last name`);
-const city = prompt(`Enter your city`);
+const firstName = prompt('Enter your first name');
+const lastName = prompt('Enter your last name');
+const city = prompt('Enter your city');
 console.log(`City: ${city}, First name: ${firstName}, Last name: ${lastName}`);
 
 //3-Lesson3//
@@ -140,3 +140,48 @@ switch (true){
     default:
         console.log('OK!');
 }
+
+//1-Lesson 5//
+for (let i= 20; i <= 30; i += 0.5) {
+    console.log(i);
+}
+
+//2-Lesson 5//
+const rate= 26;
+let usd = 10;
+while (usd <= 100) {
+    let uah = usd * rate;
+    console.log(`${usd} USD = ${uah} UAH`);
+    usd += 10;
+}
+
+//3-Lesson 5//
+let N = +prompt('Please enter a number');
+let a = 1;
+do {
+    if (a * a <= N) {
+        console.log(a);
+    }
+    a++;
+} while (a * a <= N);
+
+//4-Lesson 5//
+
+let num = +prompt('Please enter a number');
+if (num <= 1){
+    console.log(`Number ${num} is not a prime number.`);
+} else {
+    let isPrimeNum = true;
+    for (b = 2; b < num; b++){
+        if (num % b === 0) {
+            isPrimeNum = false;
+            break;
+        }
+    }
+    if (isPrimeNum) {
+        console.log(`Number ${num} is a prime number.`);
+    } else {
+        console.log(`Number ${num} is not a prime number.`);
+    }
+}
+
