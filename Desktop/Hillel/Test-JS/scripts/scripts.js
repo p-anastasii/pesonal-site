@@ -156,14 +156,14 @@ while (usd <= 100) {
 }
 
 //3-Lesson 5//
-let N = +prompt('Please enter a number');
+let numberN = +prompt('Please enter a number');
 let a = 1;
 do {
-    if (a * a <= N) {
+    if (a * a <= numberN) {
         console.log(a);
     }
     a++;
-} while (a * a <= N);
+} while (a * a <= numberN);
 
 //4-Lesson 5//
 
@@ -184,4 +184,5 @@ if (num <= 1){
         console.log(`Number ${num} is not a prime number.`);
     }
 }
+
 
