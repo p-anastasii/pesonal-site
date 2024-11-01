@@ -185,4 +185,69 @@ if (num <= 1){
     }
 }
 
+//1-Lesson 6//
+//Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". Вихідний рядок та символи для видалення задає користувач.//
 
+function removeSymbols (str, symbolsToRemove) {
+    let result = '';
+    for(let symbol of str) {
+        if (!symbolsToRemove.includes(symbol)) {
+            result += symbol;
+        }
+    }
+    return result;
+}
+
+const input = prompt("Enter string: ");
+const symbolsRemove = prompt("Enter symbols to remove: ");
+
+const result = removeSymbols(input, symbolsRemove);
+console.log(result);
+
+//2-Lesson 6//
+//Дано масив з елементами різних типів. Створити функцію яка вираховує середнє арифметичне лише числових елементів даного масиву.//
+
+const inputStr = prompt("Enter something that include letters, symbols and numbers: ");
+let array = inputStr.split('');
+
+let newArray = [];
+for (let input of array) {
+    const number = Number(input);
+    if (!isNaN(number)) {
+        newArray.push(number);
+    }
+}
+
+console.log(newArray);
+
+function calcAverage (numbers) {
+    let sum = 0;
+    let count = 0;
+    for (let num of numbers) {
+        sum += num;
+        count++;
+    }
+    return sum/count;
+}
+
+console.log(calcAverage(newArray));
+
+//3-Lesson 6//
+// Реалізуйте функцію removeElement(array, item), щоб видалити елемент item з масиву array.
+// Наприклад:
+// const array = [1, 3, 4, 6, 2, 5, 7];
+// removeElement(array,4);
+// console.log(array); // Результат: [1, 3, 6, 2, 5, 7]//
+
+const arrayInitial = [1, 3, 4, 6, 2, 5, 7];
+function removeElement(array, elementToRemove) {
+    let arrayNew = [];
+    for (let element of array) {
+        if (element !== elementToRemove) {
+            arrayNew.push(element);
+        }
+    }
+    return arrayNew;
+}
+
+console.log(removeElement(arrayInitial, 4));
