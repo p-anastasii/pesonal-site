@@ -251,3 +251,63 @@ function removeElement(array, elementToRemove) {
 }
 
 console.log(removeElement(arrayInitial, 4));
+
+
+
+
+
+//1 - Lesson 7//
+//Написати функцію, яка приймає 1 параметр. Та скадае значення з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад:
+//
+// console.log(sum(4)); // 4
+//
+// console.log(sum(6)); // 10
+//
+// console.log(sum(10)); // 20
+//
+// console.log(sum(7)); // 27//
+
+function sumNumbers() {
+    let result = 0;
+    return function (b) {
+        result += b;
+        return result;
+    }
+}
+
+const sum = sumNumbers();
+console.log(sum(4));
+console.log(sum(6));
+console.log(sum(10));
+console.log(sum(7));
+
+//2 - Lesson 7//
+//Створити функцію для розрахунку добутку двох чисел, що викликається так: name(5)(2). Функція повинна повертати результат (у середині функції не має бути консоль лога!)//
+
+function multiply(a){
+    return function (b){
+        return a * b;
+    }
+}
+
+const result1 = multiply(5)(2);
+console.log(result1);
+
+//3 - Lesson 7//
+//Цикл на кожній ітерації пропонує через prompt ввести число більше 100 (але максимум 10 ітерацій циклу) . Якщо відвідувач ввів число менше ста – попросити ввести ще раз, і таке інше. Якщо користувач вводить більше ста, текст або цикл закінчує всі ітерації, то функція виводить в консоль останній введення користувача і завершує функцію.//
+
+function enterNumber(){
+    let numberInput;
+
+    for (let i= 0; i < 10; i++) {
+        numberInput = +prompt("Enter number over 100: ");
+
+        if(numberInput > 100){
+            console.log(numberInput);
+            return;
+        } else{
+            alert("This number less than 100. Please, try again.");
+        }
+    }
+    console.log("Maximum number of input attempts reached. Your last entered number:", numberInput);
+}
