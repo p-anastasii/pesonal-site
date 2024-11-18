@@ -351,6 +351,30 @@ let ladder = {
 };
 ladder.up().up().down().showStep();
 
+//Lesson 9//
 
+let company= {
+    sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600}],
+    development: {
+        web: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800}],
+        internals: [{name: 'Jack', salary: 1300}]
+    }
+}
+function sumOfSalaries(department) {
+    if (Array.isArray(department)) {
+        let total = 0;
+        for (let worker of department) {
+            total += worker.salary;
+        }
+        return total;
+    } else {
+        let total = 0;
+        for (let departmentBranch of Object.values(department)) {
+            total += sumOfSalaries(departmentBranch);
+        }
+        return total;
+    }
+}
+console.log(sumOfSalaries(company));
 
 
