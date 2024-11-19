@@ -377,4 +377,40 @@ function sumOfSalaries(department) {
 }
 console.log(sumOfSalaries(company));
 
+//Lesson 10-1
+//Створіть об'єкт, що містить інформацію про користувача, таку як ім'я, вік, місце проживання тощо. Створіть метод об'єкту для отримання та відображення цих даних.//
 
+const user = {
+    name: 'Bob',
+    age: 28,
+    city: 'Toronto',
+    country: 'Canada',
+    getInfo() {
+        return `User: ${user.name}, age: ${user.age}, city: ${user.city}, country: ${user.country}`
+    }
+}
+console.log(user.getInfo());
+
+
+//Lesson 10-2
+//Маєте масив чисел. Використовуйте вже існуючі методи масиву для створення нового масиву, в якому лише парні числа з оригінального масиву.
+
+const firstArray = [1, 3, 105, 24, 78, 89, 36, 8];
+const secondArray = firstArray.filter(num => num % 2 === 0);
+console.log(secondArray);
+
+//Lesson 10-3
+//Створіть об'єкт, який матиме одну властивість з масивом об'єктів. Які представляють контакти у вашій контактній книзі. Кожен об'єкт має містити ім'я, номер телефону та адресу електронної пошти. Додайте метод для пошуку контакту за ім'ям та метод для додавання нових контактів.//
+
+const contactList = {
+    contacts: [
+        {name: 'John', phone: +12657876354, email: 'john@gmail.com'},
+        {name: 'Lisa', phone: +15568887699, email: 'lisa@yahoo.com'},
+        {name: 'Kim', phone: +14578977565, email: 'kim@yahoo.com'},
+    ]
+}
+const findContactByName = contactList.contacts.find(user => user.name === 'Lisa');
+console.log(findContactByName);
+
+contactList.contacts.push({name: 'Bob', phone: +18767643423, email: 'bob@gmail.com'});
+console.log(contactList);
