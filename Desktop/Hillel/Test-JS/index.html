@@ -8,7 +8,92 @@
     <title>Test JS</title>
 </head>
 <body>
+//Lesson 11-1//
 
-<script src="scripts/scripts.js"></script>
+
+<div id="container"></div>
+
+<script>
+    const container = document.getElementById('container');
+    const pythagoreanTable = document.createElement('pythagoreanTable');
+
+    for (let row = 0; row <= 10; row++) {
+        const tr = document.createElement('tr');
+
+        for (let col = 0; col <= 10; col++) {
+            const td = document.createElement('td');
+            if (row === 0 && col === 0) {
+                td.textContent = '';
+            } else if (row === 0) {
+                td.textContent = col;
+            } else if (col === 0) {
+                td.textContent = row;
+            } else {
+                td.textContent = row * col;
+            }
+
+            td.style.border = '2px solid black';
+            td.style.padding = '5px';
+            td.style.textAlign = 'center';
+
+            tr.appendChild(td);
+        }
+        pythagoreanTable.appendChild(tr);
+    }
+
+    container.appendChild(pythagoreanTable);
+</script>
+<!--<script src="scripts/scripts.js"></script>-->
+
+//Lesson 11-2//
+<div class="container">
+    <p id="my_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <button id="btn_change_color">Click Here</button>
+</div>
+<script>
+    const myButton = document.getElementById('btn_change_color');
+    myButton.addEventListener('click', function (){
+        const myText = document.getElementById('my_text');
+        if(myText.style.color === 'black'){
+            myText.style.color = 'blue';
+        } else {
+            myText.style.color = 'black'
+        }
+    })
+</script>
+
+//Lesson 11-3//
+
+<button id="random_image_btn">Click here to see random image</button>
+<div id="image_container"></div>
+
+<script>
+    const images = [
+        'images/1.jpg',
+        'images/2.jpg',
+        'images/3.jpg',
+        'images/4.jpg',
+        'images/5.jpg',
+        'images/6.jpg',
+        'images/7.jpg',
+        'images/8.jpg',
+        'images/9.jpg',
+    ];
+
+    const buttonRandomImage = document.getElementById('random_image_btn');
+    const imageContainer = document.getElementById('image_container');
+
+    buttonRandomImage.addEventListener('click', function (){
+        const randomImg = Math.floor(Math.random() * images.length);
+         const image = document.createElement('img');
+         image.src = images[randomImg];
+         image.alt = 'random image';
+         image.style.width = '200px';
+         image.style.height = 'auto';
+
+         imageContainer.innerHTML = '';
+         imageContainer.appendChild(image);
+    });
+</script>
 </body>
 </html>
