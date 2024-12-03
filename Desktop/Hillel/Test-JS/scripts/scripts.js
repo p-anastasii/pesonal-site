@@ -313,9 +313,9 @@ function enterNumber(){
 }
 
 
-//Lesson 8
-//Створити ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
-
+// Lesson 8
+// Створити ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
+//
 // let ladder = {
 //   up: function () { // підніматиме вас на одну сходинку
 //   },
@@ -323,8 +323,8 @@ function enterNumber(){
 //   },
 //   showStep: function () { // показує поточну сходинку
 //   }
-//};
-
+// };
+//
 // Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
 // ladder.up();
 // ladder.up();
@@ -414,3 +414,4 @@ console.log(findContactByName);
 
 contactList.contacts.push({name: 'Bob', phone: +18767643423, email: 'bob@gmail.com'});
 console.log(contactList);
+

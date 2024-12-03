@@ -6,94 +6,189 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test JS</title>
+
 </head>
 <body>
-//Lesson 11-1//
+<!--//Lesson 11-1//-->
 
 
-<div id="container"></div>
+<!--<div id="container"></div>-->
 
-<script>
-    const container = document.getElementById('container');
-    const pythagoreanTable = document.createElement('pythagoreanTable');
+<!--<script>-->
+<!--    const container = document.getElementById('container');-->
+<!--    const pythagoreanTable = document.createElement('pythagoreanTable');-->
 
-    for (let row = 0; row <= 10; row++) {
-        const tr = document.createElement('tr');
+<!--    for (let row = 0; row <= 10; row++) {-->
+<!--        const tr = document.createElement('tr');-->
 
-        for (let col = 0; col <= 10; col++) {
-            const td = document.createElement('td');
-            if (row === 0 && col === 0) {
-                td.textContent = '';
-            } else if (row === 0) {
-                td.textContent = col;
-            } else if (col === 0) {
-                td.textContent = row;
-            } else {
-                td.textContent = row * col;
-            }
+<!--        for (let col = 0; col <= 10; col++) {-->
+<!--            const td = document.createElement('td');-->
+<!--            if (row === 0 && col === 0) {-->
+<!--                td.textContent = '';-->
+<!--            } else if (row === 0) {-->
+<!--                td.textContent = col;-->
+<!--            } else if (col === 0) {-->
+<!--                td.textContent = row;-->
+<!--            } else {-->
+<!--                td.textContent = row * col;-->
+<!--            }-->
 
-            td.style.border = '2px solid black';
-            td.style.padding = '5px';
-            td.style.textAlign = 'center';
+<!--            td.style.border = '2px solid black';-->
+<!--            td.style.padding = '5px';-->
+<!--            td.style.textAlign = 'center';-->
 
-            tr.appendChild(td);
-        }
-        pythagoreanTable.appendChild(tr);
-    }
+<!--            tr.appendChild(td);-->
+<!--        }-->
+<!--        pythagoreanTable.appendChild(tr);-->
+<!--    }-->
 
-    container.appendChild(pythagoreanTable);
-</script>
-<!--<script src="scripts/scripts.js"></script>-->
+<!--    container.appendChild(pythagoreanTable);-->
+<!--</script>-->
 
-//Lesson 11-2//
+
+<!--//Lesson 11-2//-->
+<!--<div class="container">-->
+<!--    <p id="my_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+<!--    <button id="btn_change_color">Click Here</button>-->
+<!--</div>-->
+<!--<script>-->
+<!--    const myButton = document.getElementById('btn_change_color');-->
+<!--    myButton.addEventListener('click', function (){-->
+<!--        const myText = document.getElementById('my_text');-->
+<!--        if(myText.style.color === 'black'){-->
+<!--            myText.style.color = 'blue';-->
+<!--        } else {-->
+<!--            myText.style.color = 'black'-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
+
+<!--//Lesson 11-3//-->
+
+<!--<button id="random_image_btn">Click here to see random image</button>-->
+<!--<div id="image_container"></div>-->
+
+<!--<script>-->
+<!--    const images = [-->
+<!--        'images/1.jpg',-->
+<!--        'images/2.jpg',-->
+<!--        'images/3.jpg',-->
+<!--        'images/4.jpg',-->
+<!--        'images/5.jpg',-->
+<!--        'images/6.jpg',-->
+<!--        'images/7.jpg',-->
+<!--        'images/8.jpg',-->
+<!--        'images/9.jpg',-->
+<!--    ];-->
+
+<!--    const buttonRandomImage = document.getElementById('random_image_btn');-->
+<!--    const imageContainer = document.getElementById('image_container');-->
+
+<!--    buttonRandomImage.addEventListener('click', function (){-->
+<!--        const randomImg = Math.floor(Math.random() * images.length);-->
+<!--         const image = document.createElement('img');-->
+<!--         image.src = images[randomImg];-->
+<!--         image.alt = 'random image';-->
+<!--         image.style.width = '200px';-->
+<!--         image.style.height = 'auto';-->
+
+<!--         imageContainer.innerHTML = '';-->
+<!--         imageContainer.appendChild(image);-->
+<!--    });-->
+<!--</script>-->
+
+<!--//Lesson 12-1//-->
+<!--//На сторінці є дві кнопки. При натисканні на першу кнопку користувач повинен ввести в prompt посилання, при натисканні на другу – переадресовується на інший сайт (за раніше введеним посиланням).//-->
+
 <div class="container">
-    <p id="my_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <button id="btn_change_color">Click Here</button>
+    <button id="enterUrl">Enter URL</button>
+    <button id="urlToRedirect">Redirect</button>
 </div>
 <script>
-    const myButton = document.getElementById('btn_change_color');
-    myButton.addEventListener('click', function (){
-        const myText = document.getElementById('my_text');
-        if(myText.style.color === 'black'){
-            myText.style.color = 'blue';
+    let urlToRedirect = '';
+    document.getElementById('enterUrl').addEventListener('click', () => {
+        const url = prompt("Enter the URL to redirect:");
+
+        if (url) {
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                urlToRedirect = url;
+            } else {
+                urlToRedirect = `https://${url}`;
+            }
+
+            alert(`URL set: ${urlToRedirect}`);
         } else {
-            myText.style.color = 'black'
+            alert("No URL provided. Please enter a valid URL.");
         }
-    })
-</script>
-
-//Lesson 11-3//
-
-<button id="random_image_btn">Click here to see random image</button>
-<div id="image_container"></div>
-
-<script>
-    const images = [
-        'images/1.jpg',
-        'images/2.jpg',
-        'images/3.jpg',
-        'images/4.jpg',
-        'images/5.jpg',
-        'images/6.jpg',
-        'images/7.jpg',
-        'images/8.jpg',
-        'images/9.jpg',
-    ];
-
-    const buttonRandomImage = document.getElementById('random_image_btn');
-    const imageContainer = document.getElementById('image_container');
-
-    buttonRandomImage.addEventListener('click', function (){
-        const randomImg = Math.floor(Math.random() * images.length);
-         const image = document.createElement('img');
-         image.src = images[randomImg];
-         image.alt = 'random image';
-         image.style.width = '200px';
-         image.style.height = 'auto';
-
-         imageContainer.innerHTML = '';
-         imageContainer.appendChild(image);
+    });
+    document.getElementById('urlToRedirect').addEventListener('click', () => {
+        if (urlToRedirect) {
+            window.location.href = urlToRedirect;
+        } else {
+            alert("No URL set. Please press 'Enter URL' button to enter a URL.");
+        }
     });
 </script>
+
+<!--//Lesson 12-2//-->
+<!--//Створіть HTML-сторінку з декількома кнопками. Ваше завдання - створити обробник подій для батьківського елементу, який відслідковуватиме кліки на всіх кнопках.//-->
+
+<div id="buttonContainer">
+    <button id="firstButton">Button 1</button>
+    <button id="secondButton">Button 2</button>
+    <button id="thirdButton">Button 3</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById("buttonContainer");
+
+        container.addEventListener("click", function (event) {
+            console.log("Clicked element:", event.target);
+            if (event.target.tagName === "button") {
+                console.log("Button clicked:", event.target.innerText);
+            }
+        });
+    });
+</script>
+
+<!--//lesson 12-3//-->
+<ul id="toDoList">
+    <li>Task 1 <button class="delete_task">Delete</button></li>
+    <li>Task 2 <button class="delete_task">Delete</button></li>
+    <li>Task 3 <button class="delete_task">Delete</button></li>
+</ul>
+
+<input type="text" id="new_task" placeholder="Add new task">
+<button id="add_task">Add new task</button>
+
+<script>
+    const container = document.getElementById("toDoList");
+    const inputField = document.getElementById("new_task");
+    const addButton = document.getElementById("add_task");
+
+    addButton.addEventListener("click", function() {
+        const newTask = inputField.value;
+
+        if (newTask !== "") {
+            const addedTask = document.createElement("li");
+            addedTask.innerHTML = newTask + '<button class="delete_task">Delete</button>';
+            container.appendChild(addedTask);
+
+            inputField.value = '';
+        } else {
+            alert("Please enter a valid task.");
+        }
+    });
+
+    container.addEventListener("click", function (event) {
+        if (event.target.classList.contains ("delete_task")) {
+            const listItem = event.target.closest("li");
+            listItem.remove();
+        }
+    });
+</script>
+
+<!--<script src="scripts/scripts.js"></script>-->
 </body>
 </html>
