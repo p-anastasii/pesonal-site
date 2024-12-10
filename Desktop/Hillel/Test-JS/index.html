@@ -130,27 +130,27 @@
 <!--    });-->
 <!--</script>-->
 
-<!--&lt;!&ndash;//Lesson 12-2//&ndash;&gt;-->
-<!--&lt;!&ndash;//Створіть HTML-сторінку з декількома кнопками. Ваше завдання - створити обробник подій для батьківського елементу, який відслідковуватиме кліки на всіх кнопках.//&ndash;&gt;-->
+<!--//Lesson 12-2//-->
+<!--//Створіть HTML-сторінку з декількома кнопками. Ваше завдання - створити обробник подій для батьківського елементу, який відслідковуватиме кліки на всіх кнопках.//-->
 
-<!--<div id="buttonContainer">-->
-<!--    <button id="firstButton">Button 1</button>-->
-<!--    <button id="secondButton">Button 2</button>-->
-<!--    <button id="thirdButton">Button 3</button>-->
-<!--</div>-->
+<div id="buttonContainer">
+    <button id="firstButton">Button 1</button>
+    <button id="secondButton">Button 2</button>
+    <button id="thirdButton">Button 3</button>
+</div>
 
-<!--<script>-->
-<!--    document.addEventListener("DOMContentLoaded", function() {-->
-<!--        const container = document.getElementById("buttonContainer");-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById("buttonContainer");
 
-<!--        container.addEventListener("click", function (event) {-->
-<!--            console.log("Clicked element:", event.target);-->
-<!--            if (event.target.tagName === "button") {-->
-<!--                console.log("Button clicked:", event.target.tagName);-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+        container.addEventListener("click", function (event) {
+            console.log("Clicked element:", event.target);
+            if (event.target.tagName === "BUTTON") {
+                console.log("Button clicked:", event.target.innerText);
+            }
+        });
+    });
+</script>
 
 <!--&lt;!&ndash;//lesson 12-3//&ndash;&gt;-->
 <!--<ul id="toDoList">-->
