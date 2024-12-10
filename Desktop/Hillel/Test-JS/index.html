@@ -100,91 +100,219 @@
 <!--//Lesson 12-1//-->
 <!--//На сторінці є дві кнопки. При натисканні на першу кнопку користувач повинен ввести в prompt посилання, при натисканні на другу – переадресовується на інший сайт (за раніше введеним посиланням).//-->
 
-<div class="container">
-    <button id="enterUrl">Enter URL</button>
-    <button id="urlToRedirect">Redirect</button>
-</div>
+<!--<div class="container">-->
+<!--    <button id="enterUrl">Enter URL</button>-->
+<!--    <button id="urlToRedirect">Redirect</button>-->
+<!--</div>-->
+<!--<script>-->
+<!--    let urlToRedirect = '';-->
+<!--    document.getElementById('enterUrl').addEventListener('click', () => {-->
+<!--        const url = prompt("Enter the URL to redirect:");-->
+
+<!--        if (url) {-->
+<!--            if (url.startsWith("http://") || url.startsWith("https://")) {-->
+<!--                urlToRedirect = url;-->
+<!--            } else {-->
+<!--                urlToRedirect = `https://${url}`;-->
+<!--            }-->
+
+<!--            alert(`URL set: ${urlToRedirect}`);-->
+<!--        } else {-->
+<!--            alert("No URL provided. Please enter a valid URL.");-->
+<!--        }-->
+<!--    });-->
+<!--    document.getElementById('urlToRedirect').addEventListener('click', () => {-->
+<!--        if (urlToRedirect) {-->
+<!--            window.location.href = urlToRedirect;-->
+<!--        } else {-->
+<!--            alert("No URL set. Please press 'Enter URL' button to enter a URL.");-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+<!--&lt;!&ndash;//Lesson 12-2//&ndash;&gt;-->
+<!--&lt;!&ndash;//Створіть HTML-сторінку з декількома кнопками. Ваше завдання - створити обробник подій для батьківського елементу, який відслідковуватиме кліки на всіх кнопках.//&ndash;&gt;-->
+
+<!--<div id="buttonContainer">-->
+<!--    <button id="firstButton">Button 1</button>-->
+<!--    <button id="secondButton">Button 2</button>-->
+<!--    <button id="thirdButton">Button 3</button>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        const container = document.getElementById("buttonContainer");-->
+
+<!--        container.addEventListener("click", function (event) {-->
+<!--            console.log("Clicked element:", event.target);-->
+<!--            if (event.target.tagName === "button") {-->
+<!--                console.log("Button clicked:", event.target.tagName);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<!--&lt;!&ndash;//lesson 12-3//&ndash;&gt;-->
+<!--<ul id="toDoList">-->
+<!--    <li>Task 1 <button class="delete_task">Delete</button></li>-->
+<!--    <li>Task 2 <button class="delete_task">Delete</button></li>-->
+<!--    <li>Task 3 <button class="delete_task">Delete</button></li>-->
+<!--</ul>-->
+
+<!--<input type="text" id="new_task" placeholder="Add new task">-->
+<!--<button id="add_task">Add new task</button>-->
+
+<!--<script>-->
+<!--    const container = document.getElementById("toDoList");-->
+<!--    const inputField = document.getElementById("new_task");-->
+<!--    const addButton = document.getElementById("add_task");-->
+
+<!--    addButton.addEventListener("click", function() {-->
+<!--        const newTask = inputField.value;-->
+
+<!--        if (newTask !== "") {-->
+<!--            const addedTask = document.createElement("li");-->
+<!--            addedTask.innerHTML = newTask + '<button class="delete_task">Delete</button>';-->
+<!--            container.appendChild(addedTask);-->
+
+<!--            inputField.value = '';-->
+<!--        } else {-->
+<!--            alert("Please enter a valid task.");-->
+<!--        }-->
+<!--    });-->
+
+<!--    container.addEventListener("click", function (event) {-->
+<!--        if (event.target.classList.contains ("delete_task")) {-->
+<!--            const listItem = event.target.closest("li");-->
+<!--            listItem.remove();-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+
+
+<!--//Lesson 13//-->
+<!--//Доробити валідацію для надсилання повідомлення з використанням регулярних виразів:-->
+
+<!--Поля:-->
+
+<!--Name - обов'язкове текстове поле-->
+<!--Message - текстове поле не менше 5 символів-->
+<!--Phone number - обов'язкове поле типу phone. З початком на +380-->
+<!--Email - email обов'язково повинен мати @ та крапку-->
+<!--Після відправки, в консоль відображаємо дані, які ввів користувач.-->
+
+<!--Під час помилки показувати її під полем.//-->
+
+<form name="We would like to help you" id="contactForm" action="submit.php" method="post">
+    <div>
+        <input type="text" id="name" name="name" placeholder="Name">
+    </div>
+    <span id="errorName"></span>
+    <div>
+        <input type="text" id="message" name="message" placeholder="Message" minlength="5">
+    </div>
+    <span id="errorMessage"></span>
+    <h3>How to answer you?</h3>
+    <div>
+        <input type="tel" id="phone" name="phone" placeholder="Phone number +380">
+    </div>
+    <span id="errorPhone"></span>
+    <div>
+        <input type="email" id="email" name="email" placeholder="Email">
+    </div>
+    <span id="errorEmail"></span>
+    <div>
+        <button type="submit">Send message</button>
+    </div>
+</form>
+
 <script>
-    let urlToRedirect = '';
-    document.getElementById('enterUrl').addEventListener('click', () => {
-        const url = prompt("Enter the URL to redirect:");
-
-        if (url) {
-            if (url.startsWith("http://") || url.startsWith("https://")) {
-                urlToRedirect = url;
-            } else {
-                urlToRedirect = `https://${url}`;
-            }
-
-            alert(`URL set: ${urlToRedirect}`);
+    document.getElementById('name').addEventListener('blur', function (event) {
+        const errorName = document.getElementById('errorName');
+        const name = event.target.value.trim();
+        if (!name) {
+            errorName.innerText = 'This field is required.'
         } else {
-            alert("No URL provided. Please enter a valid URL.");
+            errorName.innerText = ''
         }
     });
-    document.getElementById('urlToRedirect').addEventListener('click', () => {
-        if (urlToRedirect) {
-            window.location.href = urlToRedirect;
+
+    document.getElementById('message').addEventListener('input', function (event) {
+        const errorMessage = document.getElementById('errorMessage');
+        const message = event.target.value.trim();
+        if (message && (message.length < 5)) {
+            errorMessage.innerText = 'This field must contain at least 5 characters.'
         } else {
-            alert("No URL set. Please press 'Enter URL' button to enter a URL.");
-        }
-    });
-</script>
-
-<!--//Lesson 12-2//-->
-<!--//Створіть HTML-сторінку з декількома кнопками. Ваше завдання - створити обробник подій для батьківського елементу, який відслідковуватиме кліки на всіх кнопках.//-->
-
-<div id="buttonContainer">
-    <button id="firstButton">Button 1</button>
-    <button id="secondButton">Button 2</button>
-    <button id="thirdButton">Button 3</button>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const container = document.getElementById("buttonContainer");
-
-        container.addEventListener("click", function (event) {
-            console.log("Clicked element:", event.target);
-            if (event.target.tagName === "button") {
-                console.log("Button clicked:", event.target.innerText);
-            }
-        });
-    });
-</script>
-
-<!--//lesson 12-3//-->
-<ul id="toDoList">
-    <li>Task 1 <button class="delete_task">Delete</button></li>
-    <li>Task 2 <button class="delete_task">Delete</button></li>
-    <li>Task 3 <button class="delete_task">Delete</button></li>
-</ul>
-
-<input type="text" id="new_task" placeholder="Add new task">
-<button id="add_task">Add new task</button>
-
-<script>
-    const container = document.getElementById("toDoList");
-    const inputField = document.getElementById("new_task");
-    const addButton = document.getElementById("add_task");
-
-    addButton.addEventListener("click", function() {
-        const newTask = inputField.value;
-
-        if (newTask !== "") {
-            const addedTask = document.createElement("li");
-            addedTask.innerHTML = newTask + '<button class="delete_task">Delete</button>';
-            container.appendChild(addedTask);
-
-            inputField.value = '';
-        } else {
-            alert("Please enter a valid task.");
+            errorMessage.innerText = ''
         }
     });
 
-    container.addEventListener("click", function (event) {
-        if (event.target.classList.contains ("delete_task")) {
-            const listItem = event.target.closest("li");
-            listItem.remove();
+    document.getElementById('phone').addEventListener('blur', function (event) {
+        const errorPhone = document.getElementById('errorPhone');
+        const phone = event.target.value.trim();
+
+        const phonePattern = /^\+380\d{9}$/;
+
+        if (!phone) {
+            errorPhone.innerText = 'This field is required.'
+        } else if (!phonePattern.test(phone)) {
+            errorPhone.innerText = 'Please enter a valid phone number (e.g., +380XXXXXXXXX).';
+        } else {
+            errorPhone.innerText = ''
+        }
+    });
+
+    document.getElementById('email').addEventListener('input', function (event) {
+        const errorEmail = document.getElementById('errorEmail');
+        const email = event.target.value;
+
+        const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+
+        if (email && (!email.includes('@') && email.includes('.'))) {
+            errorEmail.innerText = ''
+        } else if (!emailPattern.test(email)) {
+            errorEmail.innerText = 'Please enter a valid email address (e.g., example@gmail.com)';
+        } else {
+            errorEmail.innerText = 'The email must include both "@" and ".".'
+        }
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        let isValid = true;
+
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (!name) {
+            document.getElementById('errorName').innerText = 'This field is required';
+            isValid = false;
+        }
+
+        if (message && (message.length < 5)) {
+            document.getElementById('errorMessage').innerText = 'This field must contain at least 5 characters.';
+            isValid = false;
+        }
+
+        if (!phone) {
+            document.getElementById('errorPhone').innerText = 'This field is required.';
+            isValid = false;
+        }
+
+        if (email && (!email.includes('@') || !email.includes('.'))) {
+            document.getElementById('errorEmail').innerText = 'The email must include both "@" and ".".';
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        } else {
+            console.log("Name: " + name);
+            console.log("Message: " + message);
+            console.log("Phone: " + phone);
+            console.log("Email: " + email);
         }
     });
 </script>
