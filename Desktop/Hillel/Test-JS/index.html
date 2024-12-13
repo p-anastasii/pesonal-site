@@ -8,6 +8,8 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Test JS</title>
+    <link rel="stylesheet" href="css/main.css">
+
   </head>
   <body>
     <!--//Lesson 11-1//-->
@@ -357,97 +359,192 @@
 <!--    Кількість слайдів може бути будь-якою-->
 <!--    Додати можливість навігації через точки під слайдами//-->
 
-    <div id="container">
-      <button id="prevButton">Prev</button>
-      <div id="slider">
-        <div class="slide">
-          <img src="images/slide1.jpg" alt="Slide 1" width="300px" height="auto">
-          <h3>Jackobson Smith</h3>
-          <p>Art Director</p>
-          <blockquote>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed velit risus, cursus vel nibh quis, tempor tristique dolor.
-          </blockquote>
-        </div>
-        <div class="slide">
-          <img src="images/slide2.jpg" alt="Slide 2" width="300px" height="auto">
-          <h3>Alison Black</h3>
-          <p>SMM Manager</p>
-          <blockquote>
-            Aenean ut sagittis neque. Integer quis quam sed magna hendrerit bibendum. Sed at justo sed sem congue elementum.
-          </blockquote>
-        </div>
-        <div class="slide">
-          <img src="images/slide3.jpg" alt="Slide 2" width="300px" height="auto">
-          <h3>Mark Rose</h3>
-          <p>Creative Director</p>
-          <blockquote>
-            Nam id sollicitudin dolor. Proin placerat metus ac massa euismod, et imperdiet lectus sollicitudin. Integer mattis commodo sem non placerat.
-          </blockquote>
-        </div>
-      </div>
-      <button id="nextButton">Next</button>
-    </div>
-    <div id="dots">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+<!--    <div id="container">-->
+<!--      <button id="prevButton">Prev</button>-->
+<!--      <div id="slider">-->
+<!--        <div class="slide">-->
+<!--          <img src="images/slide1.jpg" alt="Slide 1" width="300px" height="auto">-->
+<!--          <h3>Jackobson Smith</h3>-->
+<!--          <p>Art Director</p>-->
+<!--          <blockquote>-->
+<!--            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed velit risus, cursus vel nibh quis, tempor tristique dolor.-->
+<!--          </blockquote>-->
+<!--        </div>-->
+<!--        <div class="slide">-->
+<!--          <img src="images/slide2.jpg" alt="Slide 2" width="300px" height="auto">-->
+<!--          <h3>Alison Black</h3>-->
+<!--          <p>SMM Manager</p>-->
+<!--          <blockquote>-->
+<!--            Aenean ut sagittis neque. Integer quis quam sed magna hendrerit bibendum. Sed at justo sed sem congue elementum.-->
+<!--          </blockquote>-->
+<!--        </div>-->
+<!--        <div class="slide">-->
+<!--          <img src="images/slide3.jpg" alt="Slide 2" width="300px" height="auto">-->
+<!--          <h3>Mark Rose</h3>-->
+<!--          <p>Creative Director</p>-->
+<!--          <blockquote>-->
+<!--            Nam id sollicitudin dolor. Proin placerat metus ac massa euismod, et imperdiet lectus sollicitudin. Integer mattis commodo sem non placerat.-->
+<!--          </blockquote>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button id="nextButton">Next</button>-->
+<!--    </div>-->
+<!--    <div id="dots">-->
+<!--      <span class="dot"></span>-->
+<!--      <span class="dot"></span>-->
+<!--      <span class="dot"></span>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--      const slides = document.querySelectorAll('.slide');-->
+<!--      const dots = document.querySelectorAll('.dot');-->
+<!--      const prevButton = document.getElementById('prevButton');-->
+<!--      const nextButton = document.getElementById('nextButton');-->
+
+<!--      let currentSlide = 0;-->
+
+<!--      function updateSlider() {-->
+<!--        slides.forEach((slide, index) => {-->
+<!--          slide.style.display = index === currentSlide ? 'block' : 'none';-->
+<!--        });-->
+<!--        dots.forEach((dot, dotIndex) => {-->
+<!--          dot.style.width = '10px';-->
+<!--          dot.style.height = '10px';-->
+<!--          dot.style.borderRadius = '50%';-->
+<!--          dot.style.display = 'inline-block';-->
+<!--          dot.style.margin = '0 5px';-->
+
+<!--          if (dotIndex === currentSlide) {-->
+<!--            dot.style.backgroundColor = 'blue';-->
+
+<!--          } else {-->
+<!--            dot.style.backgroundColor = 'gray';-->
+<!--          }-->
+<!--        });-->
+
+<!--        prevButton.style.display = currentSlide === 0 ? 'none' : 'inline';-->
+<!--        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'inline';-->
+<!--      }-->
+
+<!--      prevButton.addEventListener('click', () => {-->
+<!--        if (currentSlide > 0) {-->
+<!--          currentSlide&#45;&#45;;-->
+<!--          updateSlider();-->
+<!--        }-->
+<!--      });-->
+
+<!--      nextButton.addEventListener('click', () => {-->
+<!--        if (currentSlide < slides.length - 1) {-->
+<!--          currentSlide++;-->
+<!--          updateSlider();-->
+<!--        }-->
+<!--      });-->
+
+<!--      dots.forEach((dot, dotIndex) => {-->
+<!--        dot.addEventListener('click', () => {-->
+<!--          currentSlide = dotIndex;-->
+<!--          updateSlider();-->
+<!--        });-->
+<!--      });-->
+
+<!--      updateSlider();-->
+<!--    </script>-->
+
+    //Lesson 15//
+    <div class="container">
+      <h1>ToDoList</h1>
+      <form class="form js--form">
+        <input type="text" name="value" required class="form__input js--form__input">
+        <button class="form__btn">Додати</button>
+      </form>
+      <ul class="js--todos-wrapper">
+        <li class="todo-item">
+          <input type="checkbox">
+          <span class="todo-item__description">Text</span>
+          <button class="todo-item__delete">Видалити</button>
+        </li>
+        <li class="todo-item todo-item--checked">
+          <input type="checkbox">
+          <span class="todo-item__description">Text</span>
+          <button class="todo-item__delete">Видалити</button>
+        </li>
+      </ul>
     </div>
 
     <script>
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.dot');
-      const prevButton = document.getElementById('prevButton');
-      const nextButton = document.getElementById('nextButton');
+      const form = document.querySelector('.js--form');
+      const input = document.querySelector('.js--form__input');
+      const todosWrapper = document.querySelector('.js--todos-wrapper');
 
-      let currentSlide = 0;
+      const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-      function updateSlider() {
-        slides.forEach((slide, index) => {
-          slide.style.display = index === currentSlide ? 'block' : 'none';
-        });
-        dots.forEach((dot, dotIndex) => {
-          dot.style.width = '10px';
-          dot.style.height = '10px';
-          dot.style.borderRadius = '50%';
-          dot.style.display = 'inline-block';
-          dot.style.margin = '0 5px';
-
-          if (dotIndex === currentSlide) {
-            dot.style.backgroundColor = 'blue';
-
-          } else {
-            dot.style.backgroundColor = 'gray';
-          }
-        });
-
-        prevButton.style.display = currentSlide === 0 ? 'none' : 'inline';
-        nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'inline';
+      function setTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos));
       }
 
-      prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) {
-          currentSlide--;
-          updateSlider();
-        }
-      });
+      function updateTodos() {
+        todosWrapper.innerHTML = '';
 
-      nextButton.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) {
-          currentSlide++;
-          updateSlider();
-        }
-      });
+        todos.forEach((todo, index) => {
+          const li = document.createElement('li');
+          li.className = 'todo-item';
+          if (todo.completed) {
+            li.className += ' todo-item--checked';
+          }
 
-      dots.forEach((dot, dotIndex) => {
-        dot.addEventListener('click', () => {
-          currentSlide = dotIndex;
-          updateSlider();
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = todo.completed;
+          checkbox.addEventListener('change', () => markTaskAsDone(index));
+
+          const span = document.createElement('span');
+          span.className = 'todo-item__description';
+          span.textContent = todo.text;
+
+          const deleteButton = document.createElement('button');
+          deleteButton.className = 'todo-item__delete';
+          deleteButton.textContent = 'Видалити';
+          deleteButton.addEventListener('click', () => deleteTodo(index));
+
+          li.appendChild(checkbox);
+          li.appendChild(span);
+          li.appendChild(deleteButton);
+
+          todosWrapper.appendChild(li);
         });
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const value = input.value;
+        if (value) {
+          addTodo(value);
+          input.value = '';
+        }
       });
 
-      updateSlider();
-    </script>
+      function addTodo(text) {
+        todos.push({text, completed: false});
+        setTodos();
+        updateTodos();
+      }
 
+      function deleteTodo(index) {
+        todos.splice(index, 1);
+        setTodos();
+        updateTodos();
+      }
+
+      function markTaskAsDone(index) {
+        const todo = todos[index];
+        todo.completed = !todo.completed;
+        setTodos();
+        updateTodos();
+      }
+
+      updateTodos();
+
+    </script>
     <!--<script src="scripts/scripts.js"></script>-->
   </body>
 </html>
