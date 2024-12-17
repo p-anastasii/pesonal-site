@@ -450,101 +450,217 @@
 <!--      updateSlider();-->
 <!--    </script>-->
 
-    //Lesson 15//
-    <div class="container">
-      <h1>ToDoList</h1>
-      <form class="form js--form">
-        <input type="text" name="value" required class="form__input js--form__input">
-        <button class="form__btn">Додати</button>
-      </form>
-      <ul class="js--todos-wrapper">
-        <li class="todo-item">
-          <input type="checkbox">
-          <span class="todo-item__description">Text</span>
-          <button class="todo-item__delete">Видалити</button>
-        </li>
-        <li class="todo-item todo-item--checked">
-          <input type="checkbox">
-          <span class="todo-item__description">Text</span>
-          <button class="todo-item__delete">Видалити</button>
-        </li>
-      </ul>
-    </div>
+<!--    //Lesson 15//-->
+<!--    <div class="container">-->
+<!--      <h1>ToDoList</h1>-->
+<!--      <form class="form js&#45;&#45;form">-->
+<!--        <input type="text" name="value" required class="form__input js&#45;&#45;form__input">-->
+<!--        <button class="form__btn">Додати</button>-->
+<!--      </form>-->
+<!--      <ul class="js&#45;&#45;todos-wrapper">-->
+<!--        <li class="todo-item">-->
+<!--          <input type="checkbox">-->
+<!--          <span class="todo-item__description">Text</span>-->
+<!--          <button class="todo-item__delete">Видалити</button>-->
+<!--        </li>-->
+<!--        <li class="todo-item todo-item&#45;&#45;checked">-->
+<!--          <input type="checkbox">-->
+<!--          <span class="todo-item__description">Text</span>-->
+<!--          <button class="todo-item__delete">Видалити</button>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--      const form = document.querySelector('.js&#45;&#45;form');-->
+<!--      const input = document.querySelector('.js&#45;&#45;form__input');-->
+<!--      const todosWrapper = document.querySelector('.js&#45;&#45;todos-wrapper');-->
+
+<!--      const todos = JSON.parse(localStorage.getItem('todos')) || [];-->
+
+<!--      function setTodos() {-->
+<!--        localStorage.setItem('todos', JSON.stringify(todos));-->
+<!--      }-->
+
+<!--      function updateTodos() {-->
+<!--        todosWrapper.innerHTML = '';-->
+
+<!--        todos.forEach((todo, index) => {-->
+<!--          const li = document.createElement('li');-->
+<!--          li.className = 'todo-item';-->
+<!--          if (todo.completed) {-->
+<!--            li.className += ' todo-item&#45;&#45;checked';-->
+<!--          }-->
+
+<!--          const checkbox = document.createElement('input');-->
+<!--          checkbox.type = 'checkbox';-->
+<!--          checkbox.checked = todo.completed;-->
+<!--          checkbox.addEventListener('change', () => markTaskAsDone(index));-->
+
+<!--          const span = document.createElement('span');-->
+<!--          span.className = 'todo-item__description';-->
+<!--          span.textContent = todo.text;-->
+
+<!--          const deleteButton = document.createElement('button');-->
+<!--          deleteButton.className = 'todo-item__delete';-->
+<!--          deleteButton.textContent = 'Видалити';-->
+<!--          deleteButton.addEventListener('click', () => deleteTodo(index));-->
+
+<!--          li.appendChild(checkbox);-->
+<!--          li.appendChild(span);-->
+<!--          li.appendChild(deleteButton);-->
+
+<!--          todosWrapper.appendChild(li);-->
+<!--        });-->
+<!--      }-->
+
+<!--      form.addEventListener('submit', (e) => {-->
+<!--        e.preventDefault();-->
+<!--        const value = input.value;-->
+<!--        if (value) {-->
+<!--          addTodo(value);-->
+<!--          input.value = '';-->
+<!--        }-->
+<!--      });-->
+
+<!--      function addTodo(text) {-->
+<!--        todos.push({text, completed: false});-->
+<!--        setTodos();-->
+<!--        updateTodos();-->
+<!--      }-->
+
+<!--      function deleteTodo(index) {-->
+<!--        todos.splice(index, 1);-->
+<!--        setTodos();-->
+<!--        updateTodos();-->
+<!--      }-->
+
+<!--      function markTaskAsDone(index) {-->
+<!--        const todo = todos[index];-->
+<!--        todo.completed = !todo.completed;-->
+<!--        setTodos();-->
+<!--        updateTodos();-->
+<!--      }-->
+
+<!--      updateTodos();-->
+
+<!--    </script>-->
+
+
+    //Lesson 16//
 
     <script>
-      const form = document.querySelector('.js--form');
-      const input = document.querySelector('.js--form__input');
-      const todosWrapper = document.querySelector('.js--todos-wrapper');
-
-      const todos = JSON.parse(localStorage.getItem('todos')) || [];
-
-      function setTodos() {
-        localStorage.setItem('todos', JSON.stringify(todos));
+      function Student (name, lastName, yearOfBirth, marks) {
+        this.name = name;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+        this.marks = marks || [];
+        this.attendance = new Array(25).fill(null);
       }
 
-      function updateTodos() {
-        todosWrapper.innerHTML = '';
+      Student.prototype.getAge = function () {
+        const currentYear = new Date().getFullYear();
+        return currentYear - this.yearOfBirth;
+      };
 
-        todos.forEach((todo, index) => {
-          const li = document.createElement('li');
-          li.className = 'todo-item';
-          if (todo.completed) {
-            li.className += ' todo-item--checked';
-          }
-
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.checked = todo.completed;
-          checkbox.addEventListener('change', () => markTaskAsDone(index));
-
-          const span = document.createElement('span');
-          span.className = 'todo-item__description';
-          span.textContent = todo.text;
-
-          const deleteButton = document.createElement('button');
-          deleteButton.className = 'todo-item__delete';
-          deleteButton.textContent = 'Видалити';
-          deleteButton.addEventListener('click', () => deleteTodo(index));
-
-          li.appendChild(checkbox);
-          li.appendChild(span);
-          li.appendChild(deleteButton);
-
-          todosWrapper.appendChild(li);
-        });
-      }
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const value = input.value;
-        if (value) {
-          addTodo(value);
-          input.value = '';
+      Student.prototype.getAverageMark = function () {
+        if (this.marks.length === 0) {
+          return 0;
         }
-      });
+        let total = 0;
+        for (let i = 0; i < this.marks.length; i++) {
+          total += this.marks[i]
+        }
+        const sum = total;
+        return sum / this.marks.length;
+      };
 
-      function addTodo(text) {
-        todos.push({text, completed: false});
-        setTodos();
-        updateTodos();
+      Student.prototype.present = function () {
+        let index = this.attendance.indexOf(null);
+        if (index !== -1) {
+          this.attendance[index] = true;
+        } else {
+          console.log("All classes were marked");
+        }
+      };
+
+      Student.prototype.absent = function () {
+        let index = this.attendance.indexOf(null);
+        if (index !== -1) {
+          this.attendance[index] = false;
+        } else {
+          console.log("All classes were marked");
+        }
+      };
+
+      Student.prototype.getAverageAttendance = function () {
+        let total = 0;
+        let visited = 0;
+
+        for (let i = 0; i < this.attendance.length; i++) {
+          if (this.attendance[i] !== null) {
+            total++;
+          }
+          if (this.attendance[i] === true) {
+            visited++;
+          }
+        }
+
+        if (total > 0) {
+          return visited / total;
+        } else {
+          return 0;
+        }
       }
 
-      function deleteTodo(index) {
-        todos.splice(index, 1);
-        setTodos();
-        updateTodos();
-      }
+      Student.prototype.summary = function () {
+        const averageMark = this.getAverageMark();
+        const averageAttendance = this.getAverageAttendance();
 
-      function markTaskAsDone(index) {
-        const todo = todos[index];
-        todo.completed = !todo.completed;
-        setTodos();
-        updateTodos();
-      }
+        if (averageMark > 90 && averageAttendance > 0.9) {
+          return "Молодець!";
+        } else if (averageMark > 90 || averageAttendance > 0.9) {
+          return "Добре, але можна краще";
+        } else {
+          return "Редиска!"
+        }
+      };
 
-      updateTodos();
+      const studentAnna = new Student('Anna', 'Roy', 2002, [75, 82, 90, 85]);
+      const studentBob = new Student('Bob', 'Smith', 2000, [96, 85, 100, 95]);
+      const studentAlex = new Student('Alex', 'Alexandrov', 2004, [99, 95, 92, 89]);
 
+      console.log(`Ім'я: ${studentAnna.name} ${studentAnna.lastName}`);
+      console.log(`Вік: ${studentAnna.getAge()}`);
+      console.log(`Середній бал: ${studentAnna.getAverageMark()}`);
+      studentAnna.present();
+      studentAnna.present();
+      studentAnna.absent();
+      studentAnna.present();
+      console.log(`Середнє відвідування: ${studentAnna.getAverageAttendance()}`);
+      console.log(`Підсумок: ${studentAnna.summary()}`);
+
+      console.log(`Ім'я: ${studentBob.name} ${studentBob.lastName}`);
+      console.log(`Вік: ${studentBob.getAge()}`);
+      console.log(`Середній бал: ${studentBob.getAverageMark()}`);
+      studentBob.present();
+      studentBob.present();
+      studentBob.present();
+      studentBob.present();
+      console.log(`Середнє відвідування: ${studentBob.getAverageAttendance()}`);
+      console.log(`Підсумок: ${studentBob.summary()}`);
+
+      console.log(`Ім'я: ${studentAlex.name} ${studentAlex.lastName}`);
+      console.log(`Вік: ${studentAlex.getAge()}`);
+      console.log(`Середній бал: ${studentAlex.getAverageMark()}`);
+      studentAlex.present();
+      studentAlex.absent();
+      studentAlex.absent();
+      studentAlex.present();
+      console.log(`Середнє відвідування: ${studentAlex.getAverageAttendance()}`);
+      console.log(`Підсумок: ${studentAlex.summary()}`);
     </script>
+
     <!--<script src="scripts/scripts.js"></script>-->
   </body>
 </html>
