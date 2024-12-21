@@ -755,34 +755,89 @@
 <!--    Відобразити на сторінці час у форматі 01:25-->
 <!--    Коли закінчився таймер зупинити його//-->
 
-    <div id="timer-name">Таймер відліку</div>
-    <div id="timer"></div>
+<!--    <div id="timer-name">Таймер відліку</div>-->
+<!--    <div id="timer"></div>-->
+<!--    <script>-->
+<!--      let timerStartTime = 87;-->
+
+<!--      function timeFormat(seconds) {-->
+<!--        const minutes = Math.floor(seconds / 60);-->
+<!--        const secondsLeft = seconds % 60;-->
+<!--        return `${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;-->
+<!--      }-->
+
+<!--      function countDownStart(duration) {-->
+<!--        const timer = document.getElementById('timer');-->
+
+<!--        function updateTimer() {-->
+<!--          if (duration >= 0) {-->
+<!--            timer.textContent = timeFormat(duration);-->
+<!--            duration&#45;&#45;;-->
+<!--            setTimeout(updateTimer, 1000);-->
+<!--          } else {-->
+<!--            timer.textContent = "Time's finished";-->
+<!--          }-->
+<!--        }-->
+
+<!--        updateTimer();-->
+<!--      }-->
+
+<!--      countDownStart(timerStartTime);-->
+<!--    </script>-->
+
+    //Lesson 19//
+
+    <div id="city"></div>
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="cityWeather"></div>
+    <button id="refresh">Refresh</button>
+
     <script>
-      let timerStartTime = 87;
+      const apiKey = 'd3eadc40088de384a75f4794e5564661';
+      const cityName = 'Dnipro';
+      const city = document.getElementById('city');
+      const cityWeather = document.getElementById('cityWeather');
+      const date = document.getElementById('date');
+      const time = document.getElementById('time');
+      const refresh = document.getElementById('refresh');
 
-      function timeFormat(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secondsLeft = seconds % 60;
-        return `${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+      function updateDateAndTime() {
+        const currentDateAndTime = new Date();
+        date.textContent = `${currentDateAndTime.toLocaleDateString()}`;
+        time.textContent = `${currentDateAndTime.toLocaleTimeString()}`;
       }
 
-      function countDownStart(duration) {
-        const timer = document.getElementById('timer');
+      async function fetchWeather() {
+        try {
+          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+          const response = await fetch(apiUrl);
 
-        function updateTimer() {
-          if (duration >= 0) {
-            timer.textContent = timeFormat(duration);
-            duration--;
-            setTimeout(updateTimer, 1000);
-          } else {
-            timer.textContent = "Time's finished";
+          if (!response.ok) {
+            cityWeather.textContent = 'Failed to get weather data';
+            return;
           }
-        }
 
-        updateTimer();
+          const weatherData = await response.json();
+
+          const {main, weather} = weatherData;
+
+          city.textContent = `${cityName}`;
+
+          cityWeather.innerHTML = `
+                  <p>${weather[0].description}</p>
+                  <p>Temperature: ${main.temp}°C</p>
+                  <p>Feels like: ${main.feels_like}°C</p>`;
+        } catch (error) {
+          cityWeather.textContent = 'Error loading data';
+          console.log(error);
+        }
       }
 
-      countDownStart(timerStartTime);
+      updateDateAndTime();
+      fetchWeather();
+
+      refresh.addEventListener('click', fetchWeather);
     </script>
 
     <!--<script src="scripts/scripts.js"></script>-->
