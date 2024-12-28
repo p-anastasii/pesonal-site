@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Test JS</title>
     <link rel="stylesheet" href="css/main.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
     <!--//Lesson 11-1//-->
@@ -785,61 +785,182 @@
 <!--      countDownStart(timerStartTime);-->
 <!--    </script>-->
 
-    //Lesson 19//
+<!--    //Lesson 19//-->
 
-    <div id="city"></div>
-    <div id="date"></div>
-    <div id="time"></div>
-    <div id="cityWeather"></div>
-    <button id="refresh">Refresh</button>
+<!--    <div id="city"></div>-->
+<!--    <div id="date"></div>-->
+<!--    <div id="time"></div>-->
+<!--    <div id="cityWeather"></div>-->
+<!--    <button id="refresh">Refresh</button>-->
 
-    <script>
-      const apiKey = 'd3eadc40088de384a75f4794e5564661';
-      const cityName = 'Dnipro';
-      const city = document.getElementById('city');
-      const cityWeather = document.getElementById('cityWeather');
-      const date = document.getElementById('date');
-      const time = document.getElementById('time');
-      const refresh = document.getElementById('refresh');
+<!--    <script>-->
+<!--      const apiKey = 'd3eadc40088de384a75f4794e5564661';-->
+<!--      const cityName = 'Dnipro';-->
+<!--      const city = document.getElementById('city');-->
+<!--      const cityWeather = document.getElementById('cityWeather');-->
+<!--      const date = document.getElementById('date');-->
+<!--      const time = document.getElementById('time');-->
+<!--      const refresh = document.getElementById('refresh');-->
 
-      function updateDateAndTime() {
-        const currentDateAndTime = new Date();
-        date.textContent = `${currentDateAndTime.toLocaleDateString()}`;
-        time.textContent = `${currentDateAndTime.toLocaleTimeString()}`;
-      }
+<!--      function updateDateAndTime() {-->
+<!--        const currentDateAndTime = new Date();-->
+<!--        date.textContent = `${currentDateAndTime.toLocaleDateString()}`;-->
+<!--        time.textContent = `${currentDateAndTime.toLocaleTimeString()}`;-->
+<!--      }-->
 
-      async function fetchWeather() {
-        try {
-          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-          const response = await fetch(apiUrl);
+<!--      async function fetchWeather() {-->
+<!--        try {-->
+<!--          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;-->
+<!--          const response = await fetch(apiUrl);-->
 
-          if (!response.ok) {
-            cityWeather.textContent = 'Failed to get weather data';
-            return;
-          }
+<!--          if (!response.ok) {-->
+<!--            cityWeather.textContent = 'Failed to get weather data';-->
+<!--            return;-->
+<!--          }-->
 
-          const weatherData = await response.json();
+<!--          const weatherData = await response.json();-->
 
-          const {main, weather} = weatherData;
+<!--          const {main, weather} = weatherData;-->
 
-          city.textContent = `${cityName}`;
+<!--          city.textContent = `${cityName}`;-->
 
-          cityWeather.innerHTML = `
-                  <p>${weather[0].description}</p>
-                  <p>Temperature: ${main.temp}°C</p>
-                  <p>Feels like: ${main.feels_like}°C</p>`;
-        } catch (error) {
-          cityWeather.textContent = 'Error loading data';
-          console.log(error);
-        }
-      }
+<!--          cityWeather.innerHTML = `-->
+<!--                  <p>${weather[0].description}</p>-->
+<!--                  <p>Temperature: ${main.temp}°C</p>-->
+<!--                  <p>Feels like: ${main.feels_like}°C</p>`;-->
+<!--        } catch (error) {-->
+<!--          cityWeather.textContent = 'Error loading data';-->
+<!--          console.log(error);-->
+<!--        }-->
+<!--      }-->
 
-      updateDateAndTime();
-      fetchWeather();
+<!--      updateDateAndTime();-->
+<!--      fetchWeather();-->
 
-      refresh.addEventListener('click', fetchWeather);
-    </script>
+<!--      refresh.addEventListener('click', fetchWeather);-->
+<!--    </script>-->
 
     <!--<script src="scripts/scripts.js"></script>-->
+
+  //Lesson 20//
+
+
+    <div class="container">
+      <h1>ToDoList</h1>
+      <form class="form js--form">
+        <input type="text" name="value" required class="form__input js--form__input">
+        <button class="form__btn">Додати</button>
+      </form>
+      <ul class="js--todos-wrapper">
+        <li class="todo-item">
+          <input type="checkbox">
+          <span class="todo-item__description">Text</span>
+          <button class="todo-item__delete">Видалити</button>
+        </li>
+        <li class="todo-item todo-item--checked">
+          <input type="checkbox">
+          <span class="todo-item__description">Text</span>
+          <button class="todo-item__delete">Видалити</button>
+        </li>
+      </ul>
+
+      <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="modal-task-text">Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+      const $form = $('.js--form');
+      const $input = $('.js--form__input');
+      const $todosWrapper = $('.js--todos-wrapper');
+
+      const todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+      function setTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos));
+      }
+
+      function updateTodos() {
+        $todosWrapper.empty();
+
+        todos.forEach((todo, index) => {
+          const $li = $('<li>', {class: 'todo-item'});
+
+          if (todo.completed) {
+            $li.addClass('todo-item--checked');
+          }
+
+          const $checkbox = $('<input>', {type: 'checkbox', checked: todo.completed});
+          $checkbox.on('change', () => markTaskAsDone(index));
+
+          const $span = $('<span>', {class: 'todo-item__description', text: todo.text});
+
+          const $deleteButton = $('<button>', {class: 'todo-item__delete', text: 'Видалити'});
+          $deleteButton.on('click', () => deleteTodo(index));
+
+          $li.on('click', function () {
+            const taskText = todo.text;
+            $('.modal-task-text').text(taskText);
+            $('.modal').modal('show');
+          });
+
+          $li.append($checkbox, $span, $deleteButton);
+
+          $todosWrapper.append($li);
+        });
+      }
+
+      $form.on('submit', function (e) {
+        e.preventDefault();
+        const value = $input.val();
+        if (value) {
+          addTodo(value);
+          $input.val('');
+        }
+      });
+
+      function addTodo(text) {
+        todos.push({text, completed: false});
+        setTodos();
+        updateTodos();
+      }
+
+      function deleteTodo(index) {
+        todos.splice(index, 1);
+        setTodos();
+        updateTodos();
+      }
+
+      function markTaskAsDone(index) {
+        const todo = todos[index];
+        todo.completed = !todo.completed;
+        setTodos();
+        updateTodos();
+      }
+
+      updateTodos();
+
+    </script>
   </body>
 </html>
