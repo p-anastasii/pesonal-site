@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 19</title>
+</head>
+<body>
+    <div id="city"></div>
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="cityWeather"></div>
+    <button id="refresh">Refresh</button>
+
+    <script>
+      const apiKey = 'd3eadc40088de384a75f4794e5564661';
+      const cityName = 'Dnipro';
+      const city = document.getElementById('city');
+      const cityWeather = document.getElementById('cityWeather');
+      const date = document.getElementById('date');
+      const time = document.getElementById('time');
+      const refresh = document.getElementById('refresh');
+
+      function updateDateAndTime() {
+        const currentDateAndTime = new Date();
+        date.textContent = `${currentDateAndTime.toLocaleDateString()}`;
+        time.textContent = `${currentDateAndTime.toLocaleTimeString()}`;
+      }
+
+      async function fetchWeather() {
+        try {
+          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+          const response = await fetch(apiUrl);
+
+          if (!response.ok) {
+            cityWeather.textContent = 'Failed to get weather data';
+            return;
+          }
+
+          const weatherData = await response.json();
+
+          const {main, weather} = weatherData;
+
+          city.textContent = `${cityName}`;
+
+          cityWeather.innerHTML = `
+                  <p>${weather[0].description}</p>
+                  <p>Temperature: ${main.temp}°C</p>
+                  <p>Feels like: ${main.feels_like}°C</p>`;
+        } catch (error) {
+          cityWeather.textContent = 'Error loading data';
+          console.log(error);
+        }
+      }
+
+      updateDateAndTime();
+      fetchWeather();
+
+      refresh.addEventListener('click', fetchWeather);
+    </script>
+
+</body>
+</html>
