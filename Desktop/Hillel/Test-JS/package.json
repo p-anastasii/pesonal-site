@@ -24,5 +24,10 @@
   "scripts": {
     "start": "node_modules/.bin/webpack serve --mode development",
     "build": "node_modules/.bin/webpack --mode production"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
   }
 }
